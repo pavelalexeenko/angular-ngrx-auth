@@ -1,0 +1,17 @@
+<div id="login-modal" class="modal-dialog">
+  <div class="loginmodal-container">
+    <h1>Login to Your Account</h1>
+    <br>
+    <div *ngIf="error | async" class="error">{{ error | async }}</div>
+    <form *ngIf="!(loading | async)" (ngSubmit)="submit()" [formGroup]="form" novalidate>
+      <input required type="text" placeholder="Email Address" autocorrect="off" autocapitalize="off" spellcheck="off" formControlName="email"
+        [class.invalid]="form.controls.email.errors && form.controls.email.dirty">
+      <input required type="password" placeholder="Password" autocomplete="off" autocorrect="off" autocapitalize="off"
+        spellcheck="off" formControlName="password" [class.invalid]="form.controls.password.errors && form.controls.password.dirty">
+      <input class="login loginmodal-submit" [disabled]="form.invalid" type="submit">
+    </form>
+    <div>
+      <div *ngIf="loading | async">Loading...</div>
+    </div>
+  </div>
+</div>
